@@ -1,5 +1,5 @@
 import { Redirect, Route, Switch } from "react-router-dom";
-import Home from "./views/Home";
+import Home from "views/Home";
 
 function AppRoute() {
     return (
