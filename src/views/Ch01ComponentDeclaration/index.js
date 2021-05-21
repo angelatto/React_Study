@@ -2,7 +2,12 @@ import {  Route, Switch } from "react-router-dom";
 import ComA from "./ComA";
 import ComB from "./ComB";
 
-function Ch01ComponentDeclaration(){
+/*
+${props.match.url}는 앞부분 경로를 넣어준다. 
+*/
+function Ch01ComponentDeclaration(props){
+    console.log(props);
+    
     return (
         <div className="card">
             <div className="card-header">
@@ -10,8 +15,8 @@ function Ch01ComponentDeclaration(){
             </div>
             <div className="card-body">
                 <Switch>
-                    <Route path="/ch01/coma" exact component={ComA}/>
-                    <Route path="/ch01/comb" exact component={ComB}/>
+                    <Route path={`${props.match.url}/coma`} exact component={ComA}/>
+                    <Route path={`${props.match.url}/comb`} exact component={ComB}/>
                 </Switch>
             </div>
         </div>
