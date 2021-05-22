@@ -1,4 +1,4 @@
-function ComC(){
+function ComC(props){
     const boards = [
         {bno:1, btitle:"제목1", bwriter:"user1", bdate:new Date(), bhitcount:0},
         {bno:2, btitle:"제목2", bwriter:"user2", bdate:new Date(), bhitcount:3},
@@ -22,9 +22,10 @@ function ComC(){
                         </tr>
                     </thead>
                     <tbody>
+                    {/* key 속성은 이전 아이템과 현재 아이템을 비교하기 위해 사용된다 */}
                         {boards.map((board) => {
                             return(
-                                <tr>
+                                <tr key={board.bno}>
                                     <td>{board.bno}</td>
                                     <td>{board.btitle}</td>
                                     <td>{board.bwriter}</td>

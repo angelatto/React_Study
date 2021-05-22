@@ -1,8 +1,8 @@
-function Home(props){
+function Exam01WrapElement(props) {
     return (
         <div className="card">
             <div className="card-header">
-                Home
+                Exam01WrapElement
             </div>
             <div className="card-body">
                 content...
@@ -11,4 +11,4 @@ function Home(props){
     );
 }
 
-export default Home;
+export default Exam01WrapElement;
