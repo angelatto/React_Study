@@ -30,6 +30,12 @@ const AppMenu = () => {
             <Link to="/ch03/exam01" className="nav-link text-warning">Exam01Props</Link>
             <Link to="/ch03/exam02" className="nav-link text-warning">Exam02State</Link>
             <Link to="/ch03/exam03" className="nav-link text-warning">Exam03UseReducer</Link>
+            <Link to="/ch03/exam04" className="nav-link text-warning">Exam04StateInitFun</Link>
+            <Link to="/ch03/exam05" className="nav-link text-warning">Exam05StateToProp</Link>
+        </li>
+        <li>
+            <h6 className="text-white">Ch04. LifeCycle</h6>
+            <Link to="/ch04/exam01" className="nav-link text-warning">Exam01CallbackMethod</Link>
 
         </li>
         </ul>

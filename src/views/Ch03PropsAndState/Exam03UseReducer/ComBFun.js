@@ -29,7 +29,7 @@ function ComBFun(props){
     {bno:3, btitle:'제목3', bcontent: '내용3'},
   ]); // DB 느낌 
 
-  const [newBno, setNewBno] = useState(3);
+  const [newBno, setNewBno] = useState(4);
   const [newBoard, setNewBoard] = useState({ // 새로 추가할 떄 양식 
     btitle: "",
     bcontent: ""
@@ -49,12 +49,20 @@ function ComBFun(props){
     });
   };
 
+  const changeUpdateBoard = (event) => {
+    setUpdateBoard({
+      ...updateBoard,
+      [event.target.name]: event.target.value
+    });
+  };
+
+  // 추가 버튼 눌렀을 때 
   const addBoard = (event) => {
     console.log(newBoard);
     // dispatch를 이용해서 boards에 추가해달라고 통보해줘야 한다. 
     dispatch({type:'ADD', board: {
         ...newBoard, // 상태 
-        bno: newBno+1,
+        bno: newBno,
     }})
     setNewBno(newBno + 1); // 상태 업데이트 
     // input 창 초기화 
@@ -64,8 +72,31 @@ function ComBFun(props){
     })
   };
 
-  const removeBoard = (event, bno) => {
+  // 삭제 버튼 클릭 
+  const removeBoard = (bno) => {
     dispatch({type:'DELETE', bno: bno})
+  }
+  
+  // 선택 버튼 클릭 
+  const selectBoard = (bno) => {
+    // bno로 보드 정보 뽑아오기 - 반복문 써도되지만 find 함수 이용해보기 
+    // array.find((배열의 요소) => {return true}) true인 요소가 find된다. 
+    const selectedBoard = boards.find(board => (board.bno === bno));
+    setUpdateBoard({...selectedBoard}); // 업데이트 보드에 input에 값 보여주기 
+  }
+  
+  // 수정 버튼 클릭 시 
+  const handleUpdate = (event) => {
+    //너는 왜 깊은 복사 안하고 바로 넣는지 궁금....????
+    dispatch({type:'UPDATE', board: updateBoard}); // 수정하기 
+
+    // input 창 초기화 
+    setUpdateBoard({
+      bno: '',
+      btitle: '',
+      bcontent: ''
+    })
+
   }
 
   return(
@@ -109,8 +140,8 @@ function ComBFun(props){
                   <td>{board.btitle}</td>
                   <td>{board.bcontent}</td>
                   <td style={{width: '150px'}}>
-                    <button className="btn btn-info btn-sm mr-1">선택</button>
-                    <button className="btn btn-danger btn-sm" onClick={(event) => removeBoard(event, board.bno)}>삭제</button>
+                    <button className="btn btn-info btn-sm mr-1" onClick={(event) => selectBoard(board.bno)}>선택</button>
+                    <button className="btn btn-danger btn-sm" onClick={(event) => removeBoard(board.bno)}>삭제</button>
                  
                   </td>
                 </tr>
@@ -123,19 +154,21 @@ function ComBFun(props){
           <tbody>
             <tr>
               <td style={{width:"100px"}}>bno</td>
-              <td><input type="text" name="bno" style={{width:"100%"}}  readOnly/></td>
+              <td><input type="text" name="bno" style={{width:"100%"}}  readOnly value={updateBoard.bno}/></td>
             </tr>          
             <tr>
               <td style={{width:"100px"}}>btitle</td>
-              <td><input type="text" name="btitle" style={{width:"100%"}} /></td>
+              <td><input type="text" name="btitle" style={{width:"100%"}} 
+                  value={updateBoard.btitle} onChange={changeUpdateBoard} /></td>
             </tr>
             <tr>
               <td>bcontent</td>
-              <td><input type="text" name="bcontent" style={{width:"100%"}}/></td>
+              <td><input type="text" name="bcontent" style={{width:"100%"}}
+                   value={updateBoard.bcontent} onChange={changeUpdateBoard}/></td>
             </tr>
           </tbody>
         </table>
-        <button className="btn btn-success btn-sm" >수정</button>
+        <button className="btn btn-success btn-sm" onClick={handleUpdate}>수정</button>
       </div>      
     </div>
   </div>
