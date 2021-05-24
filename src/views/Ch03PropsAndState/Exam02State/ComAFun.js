@@ -13,9 +13,10 @@ function getRandomColor(){
 prop이 바뀌거나 상태가 바껴야만이 function이 재실행된다. 
 */
 function ComAFun(props){
-    // hook - 중간에 어떤 기능을 삽입시켜준다. 
+    // useState라는 hook 이용 - 중간에 어떤 기능을 삽입시켜준다. 
+    // 한수형 상태는 숫자, 객체, 문자열, 배열 다 가능 
     const [state, setState] = useState({
-        // 함수형에서 새로운 상태를 만드는 코드이다. 
+        // 함수형에서 새로운 상태(초기값)를 만드는 코드이다. 
         number: 0,
         color: "black"
     });

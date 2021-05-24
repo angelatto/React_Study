@@ -23,7 +23,8 @@ function ComCFunWithImmer(props){
         if(event.target.name !== "uskill"){
             // 여기가 immer 이다. 
             // 원본을 바꾸는게 아니라 복제된걸 바꾸는 것은 상관없다. 
-            setJoinForm(produce((draft) => {
+            // draft는 이전 상태를 ""복제한 객체""이다. 
+            setJoinForm(produce((draft) => { // 콜백함수
                 draft[event.target.name] = event.target.value;
             }))
         }else{

@@ -12,6 +12,7 @@ class ComBClass extends React.Component {
     addNumber1 = (event) => {
         /* 
            setState는 비동기로 실행 
+           결과는 +1 한번만 
          */
         this.setState({ 
             number: this.state.number + 1
@@ -22,12 +23,18 @@ class ComBClass extends React.Component {
     };
     
     addNumber2 = (event) => { 
-        this.setState((prevState) => {  // 콜백 
+        /*
+            결과는 +2 
+            함수를 매개변수로 주면 두번 모두 실행  
+        */
+        this.setState((prevState) => {  // 콜백 함수, 매개변수로 최신 값이 제공되는게 포인트 
             return {
                 number: prevState.number + 1
+                // 주의 prevState 대신에 this.state를 넣으면 안된다. 
+                // this.state를 직접 접근하면 '콜백'의 의미가 없어진다. 
             }
         });
-        this.setState((prevState) => {  // 콜백 
+        this.setState((prevState) => {  // 콜백 함수, 매개변수로 최신 값이 제공되는게 포인트
             return {
                 number: prevState.number + 1
             }

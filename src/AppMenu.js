@@ -29,6 +29,7 @@ const AppMenu = () => {
             <h6 className="text-white">Ch03. Props And State</h6>
             <Link to="/ch03/exam01" className="nav-link text-warning">Exam01Props</Link>
             <Link to="/ch03/exam02" className="nav-link text-warning">Exam02State</Link>
+            <Link to="/ch03/exam03" className="nav-link text-warning">Exam03UseReducer</Link>
 
         </li>
         </ul>

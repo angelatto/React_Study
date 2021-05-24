@@ -21,7 +21,7 @@ function ComCFun(props){
 
         if(event.target.name !== "uskill"){
             setJoinForm({
-                ...joinForm,
+                ...joinForm, 
                 [event.target.name]: event.target.value
                 // 주의: 배열아님주의, 변수의 이름이 속성으로 들어가려면 대괄호가 필요하다... 
                 // 자바스크립트 문법임 . 
@@ -33,13 +33,20 @@ function ComCFun(props){
                 //     uskill: joinForm.uskill.concat(event.target.value)
                 //     // concat은 원본 배열은 냅두고, 새로운 배열을 리턴한다. 
                 // });
+                /**
+                 * 중요: 
+                 * 여기 세터안에 있는 콜백함수의 매개변수로 들어오는
+                 * 상태값은 원본 상태값이다. 이 값은 읽기전용이고 바꾸면안된다. 
+                 * 반명에 immer에서 콜백함수 매개변수로 들어오는 draft는 
+                 * 이미 상태를 복제한 객체이기 때문에 값을 바꿔도 된다. 
+                 */
                 setJoinForm(prevJoinForm => ({
-                    // 여기에 ({}) <- ()로 감싸줘야 return 문임을 알 수 있다. 
+                    // 여기에 ({}) <- ()로 감싸줘야 '''return 문'''임을 알 수 있다. 
                     // 그렇지 않으면 화살표 함수 시작 괄호로 인식될 수 있다. 
-                    ...prevJoinForm,
-                    uskill: prevJoinForm.uskill.concat(event.target.value)
+                    ...prevJoinForm, //...이것만 가지고 '배열'까지 deep copy는 못하기 때문에 
+                    uskill: prevJoinForm.uskill.concat(event.target.value) // 원본 배열 불변, concat은 새로운 배열 리턴 
                 }));
-            }else{ // 체크를 해지했을 때 
+            }else{ // 체크를 해지 했을 때 
                 // setJoinForm({
                 //     ...joinForm,
                 //     uskill: joinForm.uskill.filter(item => item !== event.target.value)
@@ -49,7 +56,8 @@ function ComCFun(props){
                     ...prevJoinForm,
                     uskill: prevJoinForm.uskill.filter(item => item !== event.target.value)
                 }));
-                // 성능향상 측면에서 이렇게 작성해야 하는 이유가 있다. 
+                // 중요: 성능향상 측면에서 이렇게 작성해야 하는 이유가 있다. 
+                // immer는 이 방식(세터에 콜백 함수)으로만 작성한다. 
             }
         }
     };

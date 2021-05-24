@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-// 이 파일 이상함 
+
 function ComBFun(props){
     const [number, setNumber] = useState(0);
 
