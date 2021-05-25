@@ -15,7 +15,6 @@ const Exam02Sass = () => {
     userId: null 
   });
 
-
   return (
     <div className="card">
       <div className="card-header">
