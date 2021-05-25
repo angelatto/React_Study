@@ -1,7 +1,6 @@
 import React from 'react';
 
 class ClassType extends React.Component{
-
   // 처음 객체 만들 때 딱 한번 실행됨 (마운팅)
   constructor(props){
     super(props);
@@ -10,19 +9,28 @@ class ClassType extends React.Component{
       number: 0,
     }
     console.log('constructor() 실행 ');
-
+    this.handleIncrement = this.handleIncrement.bind(this);
   }
+  
+  handleIncrement(event){
+    this.setState({
+      ...this.state,
+      number : this.state.number + 1
+    })
+  }
+
 
   // static 키워드가 있는 메서드 안에서 this 사용 할 수 없다. this는 인스턴스 멤버를 가리킬 때 사용하기 때문이다. 
   // newProps는 생성자의 props와 같다.
   // 용도 : props가 갱신될 떄 상태값도 같이 갱신되도록 새로운 상태 리턴  
+  // 즉, 부모에서 받은 props를 자식 자신의 상태로 변경하는 작업을 여기서 한다. 
   static getDerivedStateFromProps(newProps, prevState){
     console.group('getDerivedStateFromProps() 실행');
     console.log('newProps: ', newProps);
     console.log('prevState: ', prevState);
     console.groupEnd(); 
     if(prevState.startNum !== newProps.startNum){
-      return {  //  부모가 props를 변경할 때 마다 실행된다. 이 함수가 리턴하는 값이 새로운 상태가 된다. 
+      return {  //  부모가 props를 변경할 때 마다 실행된다. 이 함수가 리턴하는 값이 ""새로운 상태""가 된다. 
         startNum: newProps.startNum,  
         number: newProps.startNum,  
       };
@@ -30,7 +38,7 @@ class ClassType extends React.Component{
     return null; // prop이 안바뀌면 null 리턴 -> 기존 상태 유지 의미  
   }
 
-  // 용도 : 리랜더링 할지말지 
+  // 용도 : 리랜더링 할지말지 결정 
   shouldComponentUpdate(nextProps, nextState) {
     console.group('shouldComponentUpdate() 실행');
     console.log('nextProps: ', nextProps);
@@ -47,7 +55,8 @@ class ClassType extends React.Component{
         ClassType
         </div>
         <div className="card-body">
-           number: {this.state.number}
+           <div>number: {this.state.number}</div>
+           <button className="btn btn-info btn-sm mt-2" onClick={this.handleIncrement}>증가</button>
         </div>
       </div>
       

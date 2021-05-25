@@ -1,7 +1,7 @@
 import { useState } from "react";
-import ClassType from './ClassType';
+import FunType from "./FunType";
 
-function Exam01CallbackMethod(props){
+function Exam02UseEffect(props){
     const [startNum, setStartNum] = useState(0);
     const handleChange = (e) => {
       setStartNum(parseInt(e.target.value));
@@ -10,15 +10,15 @@ function Exam01CallbackMethod(props){
     return(
       <div className="card">
         <div className="card-header">
-            Exam01CallbackMethod
+          Exam02UseEffect
         </div>
         <div className="card-body">
           <input type="number" name="startNum" value={startNum} onChange={handleChange}/>
           <div className='m-2'></div>
-          <ClassType startNum={startNum}/>
+          <FunType startNum={startNum}/>
         </div>
       </div>
     )
 }
 
-export default Exam01CallbackMethod;
+export default Exam02UseEffect;

@@ -11,11 +11,11 @@ import {BrowserRouter} from "react-router-dom"
 두번째 매개값으로 랜더링한다. 
 */
 ReactDOM.render(
-  <React.StrictMode>
+  // <React.StrictMode> 
     <BrowserRouter>
       <App />
-    </BrowserRouter>
-  </React.StrictMode>,
+    </BrowserRouter>,
+  // </React.StrictMode>,
   document.getElementById('root')
 );
 
