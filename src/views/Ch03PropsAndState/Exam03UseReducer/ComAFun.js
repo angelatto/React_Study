@@ -14,7 +14,6 @@ function ComAFun(){
   const decrementCounter = () => {
     dispatch({type: 'DECREMENT'});
     console.log('이후 state2: ', state);
-
   };
 
   return(

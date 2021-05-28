@@ -2,6 +2,7 @@ import React from "react";
 import { useCallback } from "react";
 
 function BoardListItem(props){
+   console.log('render'+props.board.bno);
    // 함수 재선언 방지하자 - useCallback 
    // []에 아무것도 값이 없으면 마운트될때 딱 한번만 실행됨 
     const handleChange = useCallback(() => {

@@ -3,7 +3,6 @@ import { useState } from "react";
 function getBoardList() {
   console.log('상태를 초기화하는 이 함수가 한번만 호출되어야 하는데 계속 호출댐');
   // 근데 여기가 디비에서 불러오면 네트워크 작업할텐데 불필요하게 계속 호출하면 성능 떨어짐. 
-
   return(
     [
       {bno:1, btitle:'제목1', bcontent: '내용1'},
@@ -21,7 +20,7 @@ function getBoardList() {
 */
 function Exam04StateInitFun(){
   /* 
-  신기방기!!!!!!
+    신기방기!!!!!!
     getBoardList() 호출코드를 넣으면 리랜더링 할때마다 호출되는데,
     getBoardList 함수 그자체를 집어넣으면 딱 한번만 실행된다. 
   */
