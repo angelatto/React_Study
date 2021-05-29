@@ -10,6 +10,8 @@ import { createStore } from 'redux';
 import rootReducer from 'redux/root-reducer';
 import { Provider } from 'react-redux';
 import {composeWithDevTools} from 'redux-devtools-extension';
+// import {} from ''; axios 
+
 // composeWithDevTools는 크롬 확장 프로그램 
 /*
  루트 리듀서에 결합된 여러 리듀서들을 총괄하는 객체가 store이다. 
